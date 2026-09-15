@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Model Analysis</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f3f8f4;
+            color: #26352a;
+        }
+
+        nav {
+            background: #1b5e20;
+            color: white;
+            padding: 16px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .nav-links a:hover {
+            color: #c8e6c9;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 45px auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1b5e20;
+        }
+
+        .intro {
+            text-align: center;
+            color: #607064;
+            margin-bottom: 35px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 18px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+        }
+
+        .card h2 {
+            color: #2e7d32;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 14px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background: #e8f5e9;
+            color: #1b5e20;
+        }
+
+        .best {
+            background: #e8f5e9;
+            border-left: 5px solid #2e7d32;
+        }
+
+        .accuracy {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+
+        @media (max-width: 700px) {
+            .nav-links {
+                gap: 12px;
+            }
+
+            .container {
+                width: 94%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">🌿 Medicinal Plant Identification</div>
+
+    <div class="nav-links">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="#">Login</a>
+        <a href="{{ url_for('analysis') }}">Analysis</a>
+        <a href="#">About</a>
+    </div>
+</nav>
+
+<div class="container">
+
+    <h1>🔬 Model Analysis</h1>
+
+    <p class="intro">
+        Comparison of machine-learning models used for medicinal plant identification.
+    </p>
+
+    <div class="card">
+        <h2>📊 Model Performance</h2>
+
+        <table>
+            <tr>
+                <th>Model</th>
+                <th>Validation Accuracy</th>
+            </tr>
+
+            <tr>
+                <td>Basic CNN</td>
+                <td>58.33%</td>
+            </tr>
+
+            <tr>
+                <td>MobileNetV2</td>
+                <td>83.33%</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="card best">
+        <h2>🏆 Best Performing Model</h2>
+
+        <p>
+            <b>MobileNetV2</b> achieved the better validation accuracy on our current dataset.
+        </p>
+
+        <div class="accuracy">83.33%</div>
+    </div>
+
+    <div class="card">
+        <h2>🧠 Research Comparison</h2>
+
+        <p>
+            Basic CNN is used as the baseline model, while MobileNetV2
+            is a lightweight pre-trained deep learning model.
+        </p>
+
+        <p>
+            Comparing these models helps us understand which approach
+            performs better for medicinal plant image classification.
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

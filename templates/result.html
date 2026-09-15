@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Plant Details</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #eef7f0;
+        }
+
+        header {
+            background: #1b5e20;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 850px;
+            margin: 40px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+        }
+
+        .plant-image {
+            display: block;
+            width: 280px;
+            height: 280px;
+            object-fit: cover;
+            margin: 20px auto;
+            border-radius: 15px;
+        }
+
+        h2 {
+            color: #2e7d32;
+            text-align: center;
+            font-size: 30px;
+        }
+
+        .info {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f4faf5;
+            border-radius: 10px;
+        }
+
+        .info b {
+            color: #1b5e20;
+        }
+
+        .back-btn {
+            display: block;
+            width: fit-content;
+            margin: 25px auto 0;
+            padding: 12px 25px;
+            background: #2e7d32;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .back-btn:hover {
+            background: #1b5e20;
+        }
+
+        .prediction {
+            text-align: center;
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🌿 Medicinal Plant Details</h1>
+    <p>Information about the identified medicinal plant</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+
+        <h2>🌱 {{ result.plant_name }}</h2>
+
+        {% if prediction %}
+        <div class="prediction">
+            <p><b>🤖 AI Prediction:</b> {{ prediction }}</p>
+        </div>
+        {% endif %}
+
+        <img
+            class="plant-image"
+            src="{{ url_for('static', filename=result.image) }}"
+        >
+
+        <div class="info">
+            <p><b>🔬 Scientific Name:</b> {{ result.scientific_name }}</p>
+
+            <p><b>📖 Description:</b> {{ result.description }}</p>
+
+            <p><b>💊 Uses:</b> {{ result.uses }}</p>
+
+            <p><b>🩺 Health Problem:</b> {{ result.health_problem }}</p>
+        </div>
+
+        <a href="{{ url_for('home') }}" class="back-btn">
+            ← Back to Home
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

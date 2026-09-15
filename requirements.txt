@@ -1,0 +1,7 @@
+Flask
+mysql-connector-python
+tensorflow
+numpy
+Pillow
+python-dotenv
+gunicorn

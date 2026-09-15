@@ -1,0 +1,6 @@
+.env
+__pycache__/
+*.pyc
+dataset/
+venv/
+model/medicinal_plant_cnn.keras

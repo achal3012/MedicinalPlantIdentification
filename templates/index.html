@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Medicinal Plant Identification</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f3f8f4;
+            color: #26352a;
+        }
+
+        /* Navigation */
+        nav {
+            background: #1b5e20;
+            color: white;
+            padding: 16px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .nav-links a:hover {
+            color: #c8e6c9;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 45px 20px 30px;
+        }
+
+        header h1 {
+            margin: 0;
+            color: #1b5e20;
+            font-size: 38px;
+        }
+
+        header p {
+            margin-top: 12px;
+            color: #607064;
+            font-size: 17px;
+        }
+
+        /* Main container */
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        /* Cards */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 20px 0 45px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px 25px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.13);
+        }
+
+        .icon {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .card h2 {
+            color: #1b5e20;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #68756b;
+            min-height: 42px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            border: 1px solid #cfd8d0;
+            border-radius: 9px;
+            outline: none;
+        }
+
+        input[type="text"]:focus {
+            border-color: #2e7d32;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            margin: 18px 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #2e7d32;
+            color: white;
+            border: none;
+            border-radius: 9px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1b5e20;
+        }
+
+        /* Bottom section */
+        .explore {
+            background: #e8f5e9;
+            padding: 28px;
+            border-radius: 18px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .explore h2 {
+            color: #1b5e20;
+            margin-top: 0;
+        }
+
+        .plants {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .plant {
+    background: white;
+    padding: 10px;
+    border-radius: 15px;
+    color: #2e7d32;
+    font-weight: bold;
+    width: 150px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.plant img {
+    width: 130px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+    margin: auto;
+}
+
+.plant p {
+    margin: 8px 0 2px;
+}
+
+        /* Responsive */
+        @media (max-width: 800px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            header h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav>
+
+    <div class="logo">
+        🌿 Medicinal Plant Identification
+    </div>
+
+    <div class="nav-links">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="#">Login</a>
+        <a href="#">Analysis</a>
+        <a href="#">About</a>
+    </div>
+
+</nav>
+
+
+<!-- Main Heading -->
+<header>
+
+    <h1>Medicinal Plant Identification</h1>
+
+    <p>
+        “Identify medicinal plants and explore their uses.”
+    </p>
+
+</header>
+
+
+<div class="container">
+
+    <div class="cards">
+
+        <!-- Plant Search -->
+        <div class="card">
+
+            <div class="icon">🔎</div>
+
+            <h2>Plant Search</h2>
+
+            <p>
+                Plant name enter → <b>Search</b>
+            </p>
+
+            <form method="POST">
+
+                <input
+                    type="text"
+                    name="plant_name"
+                    placeholder="Enter plant name"
+                    required
+                >
+
+                <button type="submit">
+                    Search
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- Health Problem -->
+        <div class="card">
+
+            <div class="icon">🩺</div>
+
+            <h2>Health Problem</h2>
+
+            <p>
+                Problem enter → <b>Find Plants</b>
+            </p>
+
+            <form method="POST">
+
+                <input
+                    type="text"
+                    name="health_problem"
+                    placeholder="Enter health problem"
+                    required
+                >
+
+                <button type="submit">
+                    Find Plants
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- AI Identification -->
+        <div class="card">
+
+            <div class="icon">📷</div>
+
+            <h2>AI Plant Identification</h2>
+
+            <p>
+                Image upload → <b>Identify Plant</b>
+            </p>
+
+            <form
+                action="{{ url_for('upload_image') }}"
+                method="POST"
+                enctype="multipart/form-data"
+            >
+
+                <input
+                    type="file"
+                    name="plant_image"
+                    accept="image/*"
+                    required
+                >
+
+                <button type="submit">
+                    Identify Plant
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- Explore Plants -->
+    <div class="explore">
+
+        <h2>🌱 Explore Medicinal Plants</h2>
+
+        <div class="plants">
+
+    <div class="plant">
+        <img src="{{ url_for('static', filename='Aloevera.jpg') }}">
+        <p>Aloevera</p>
+    </div>
+
+    <div class="plant">
+        <img src="{{ url_for('static', filename='amla.jpg') }}">
+        <p>Amla</p>
+    </div>
+
+    <div class="plant">
+        <img src="{{ url_for('static', filename='ashwagandha.jpg') }}">
+        <p>Ashwagandha</p>
+    </div>
+
+    <div class="plant">
+        <img src="{{ url_for('static', filename='ginger.jpg') }}">
+        <p>Ginger</p>
+    </div>
+
+    <div class="plant">
+        <img src="{{ url_for('static', filename='mint.jpg') }}">
+        <p>Mint</p>
+    </div>
+
+    <div class="plant">
+        <img src="{{ url_for('static', filename='moringa.jpg') }}">
+        <p>Moringa</p>
+    </div>
+
+    <div class="plant">
+        <img src="{{ url_for('static', filename='Neem.jpg') }}">
+        <p>Neem</p>
+    </div>
+
+    <div class="plant">
+        <img src="{{ url_for('static', filename='Tulsi.jpg') }}">
+        <p>Tulsi</p>
+    </div>
+
+    <div class="plant">
+        <img src="{{ url_for('static', filename='turmeric.jpg') }}">
+        <p>Turmeric</p>
+    </div>
+
+</div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
