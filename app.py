@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for
 import mysql.connector
 import os
 
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -66,12 +68,11 @@ def upload_image():
     img_array = preprocess_input(img_array)
 
     # Prediction
-    prediction = model.predict(img_array)
+    prediction = model(img_array, training=False).numpy()
 
     predicted_class = class_names[
-        np.argmax(prediction)
-    ]
-
+        np.argmax(prediction[0])
+]
     print("Predicted plant:", predicted_class)
 
     # Get plant information from MySQL
