@@ -50,7 +50,11 @@ def upload_image():
         file.filename
     )
 
+    print("UPLOAD START", flush=True)
+
     file.save(filepath)
+
+    print("FILE SAVED", flush=True)
 
     # Image preprocessing
     img = load_img(
@@ -68,11 +72,16 @@ def upload_image():
     img_array = preprocess_input(img_array)
 
     # Prediction
+    print("BEFORE PREDICTION", flush=True)
+
     prediction = model(img_array, training=False).numpy()
+
+    print("AFTER PREDICTION", flush=True)
 
     predicted_class = class_names[
         np.argmax(prediction[0])
 ]
+
     print("Predicted plant:", predicted_class)
 
     # Get plant information from MySQL
