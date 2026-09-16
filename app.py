@@ -75,7 +75,8 @@ def upload_image():
     print("Predicted plant:", predicted_class)
 
     # Get plant information from MySQL
-    cursor = db.cursor(dictionary=True)
+    db_connection = get_db_connection()
+    cursor = db_connection.cursor(dictionary=True)
 
     query = """
     SELECT plant_name, scientific_name, description, uses, image, health_problem
@@ -100,14 +101,36 @@ def upload_image():
         prediction=predicted_class
     )
 
+print("DB_HOST:", os.getenv("DB_HOST"))
+print("DB_PORT:", os.getenv("DB_PORT"))
+print("DB_USER:", os.getenv("DB_USER"))
+print("DB_NAME:", os.getenv("DB_NAME"))
 
 db = mysql.connector.connect(
     host=os.getenv("DB_HOST"),
+    port=int(os.getenv("DB_PORT", "26114"))
     user=os.getenv("DB_USER"),
     password=os.getenv("DB_PASSWORD"),
     database=os.getenv("DB_NAME")
 )
 
+def get_db_connection():
+    global db
+
+    try:
+        if not db.is_connected():
+            db.reconnect(attempts=3, delay=2)
+    except mysql.connector.Error:
+       db = mysql.connector.connect(
+          host=os.getenv("DB_HOST"),
+          port=int(os.getenv("DB_PORT", "26114")),
+          user=os.getenv("DB_USER"),
+          password=os.getenv("DB_PASSWORD"),
+          database=os.getenv("DB_NAME"),
+          ssl_disabled=False
+       )
+
+    return db
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -124,7 +147,8 @@ def home():
             ''
         ).strip()
 
-        cursor = db.cursor(dictionary=True)
+        db_connection = get_db_connection()
+        cursor = db_connection.cursor(dictionary=True)
 
         if health_problem:
 

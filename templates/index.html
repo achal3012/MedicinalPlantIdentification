@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medicinal Plant Identification</title>
 
     <style>
@@ -23,6 +24,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 15px;
         }
 
         .logo {
@@ -115,6 +117,7 @@
             border: 1px solid #cfd8d0;
             border-radius: 9px;
             outline: none;
+            font-size: 15px;
         }
 
         input[type="text"]:focus {
@@ -124,6 +127,7 @@
         input[type="file"] {
             width: 100%;
             margin: 18px 0;
+            font-size: 14px;
         }
 
         button {
@@ -163,40 +167,147 @@
         }
 
         .plant {
-    background: white;
-    padding: 10px;
-    border-radius: 15px;
-    color: #2e7d32;
-    font-weight: bold;
-    width: 150px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
+            background: white;
+            padding: 10px;
+            border-radius: 15px;
+            color: #2e7d32;
+            font-weight: bold;
+            width: 150px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
 
-.plant img {
-    width: 130px;
-    height: 110px;
-    object-fit: cover;
-    border-radius: 10px;
-    display: block;
-    margin: auto;
-}
+        .plant img {
+            width: 130px;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 10px;
+            display: block;
+            margin: auto;
+        }
 
-.plant p {
-    margin: 8px 0 2px;
-}
+        .plant p {
+            margin: 8px 0 2px;
+        }
 
-        /* Responsive */
+        /* Tablet */
         @media (max-width: 800px) {
+
+            nav {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-links {
+                gap: 18px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
             .cards {
                 grid-template-columns: 1fr;
+            }
+
+            header {
+                padding: 35px 15px 25px;
+            }
+
+            header h1 {
+                font-size: 30px;
+            }
+
+            header p {
+                font-size: 15px;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 500px) {
+
+            .container {
+                width: 94%;
+            }
+
+            nav {
+                padding: 14px 12px;
+            }
+
+            .logo {
+                font-size: 18px;
             }
 
             .nav-links {
                 gap: 12px;
             }
 
+            .nav-links a {
+                font-size: 13px;
+            }
+
             header h1 {
-                font-size: 30px;
+                font-size: 25px;
+                line-height: 1.3;
+            }
+
+            header p {
+                font-size: 14px;
+                line-height: 1.5;
+            }
+
+            .cards {
+                gap: 18px;
+                margin-bottom: 30px;
+            }
+
+            .card {
+                padding: 24px 18px;
+            }
+
+            .card h2 {
+                font-size: 20px;
+            }
+
+            .icon {
+                font-size: 36px;
+            }
+
+            input[type="text"] {
+                font-size: 16px;
+                padding: 13px;
+            }
+
+            input[type="file"] {
+                font-size: 13px;
+            }
+
+            button {
+                padding: 13px;
+                font-size: 15px;
+            }
+
+            .explore {
+                padding: 20px 12px;
+            }
+
+            .explore h2 {
+                font-size: 21px;
+            }
+
+            .plants {
+                gap: 10px;
+            }
+
+            .plant {
+                width: calc(50% - 10px);
+                padding: 8px;
+            }
+
+            .plant img {
+                width: 100%;
+                height: 100px;
+            }
+
+            .plant p {
+                font-size: 14px;
             }
         }
     </style>
@@ -337,52 +448,52 @@
 
         <div class="plants">
 
-    <div class="plant">
-        <img src="{{ url_for('static', filename='Aloevera.jpg') }}">
-        <p>Aloevera</p>
-    </div>
+            <div class="plant">
+                <img src="{{ url_for('static', filename='Aloevera.jpg') }}">
+                <p>Aloevera</p>
+            </div>
 
-    <div class="plant">
-        <img src="{{ url_for('static', filename='amla.jpg') }}">
-        <p>Amla</p>
-    </div>
+            <div class="plant">
+                <img src="{{ url_for('static', filename='amla.jpg') }}">
+                <p>Amla</p>
+            </div>
 
-    <div class="plant">
-        <img src="{{ url_for('static', filename='ashwagandha.jpg') }}">
-        <p>Ashwagandha</p>
-    </div>
+            <div class="plant">
+                <img src="{{ url_for('static', filename='ashwagandha.jpg') }}">
+                <p>Ashwagandha</p>
+            </div>
 
-    <div class="plant">
-        <img src="{{ url_for('static', filename='ginger.jpg') }}">
-        <p>Ginger</p>
-    </div>
+            <div class="plant">
+                <img src="{{ url_for('static', filename='ginger.jpg') }}">
+                <p>Ginger</p>
+            </div>
 
-    <div class="plant">
-        <img src="{{ url_for('static', filename='mint.jpg') }}">
-        <p>Mint</p>
-    </div>
+            <div class="plant">
+                <img src="{{ url_for('static', filename='mint.jpg') }}">
+                <p>Mint</p>
+            </div>
 
-    <div class="plant">
-        <img src="{{ url_for('static', filename='moringa.jpg') }}">
-        <p>Moringa</p>
-    </div>
+            <div class="plant">
+                <img src="{{ url_for('static', filename='moringa.jpg') }}">
+                <p>Moringa</p>
+            </div>
 
-    <div class="plant">
-        <img src="{{ url_for('static', filename='Neem.jpg') }}">
-        <p>Neem</p>
-    </div>
+            <div class="plant">
+                <img src="{{ url_for('static', filename='Neem.jpg') }}">
+                <p>Neem</p>
+            </div>
 
-    <div class="plant">
-        <img src="{{ url_for('static', filename='Tulsi.jpg') }}">
-        <p>Tulsi</p>
-    </div>
+            <div class="plant">
+                <img src="{{ url_for('static', filename='Tulsi.jpg') }}">
+                <p>Tulsi</p>
+            </div>
 
-    <div class="plant">
-        <img src="{{ url_for('static', filename='turmeric.jpg') }}">
-        <p>Turmeric</p>
-    </div>
+            <div class="plant">
+                <img src="{{ url_for('static', filename='turmeric.jpg') }}">
+                <p>Turmeric</p>
+            </div>
 
-</div>
+        </div>
 
     </div>
 
